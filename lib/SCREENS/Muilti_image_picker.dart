@@ -99,7 +99,7 @@ class _MuiltiImagePickerState extends State<MuiltiImagePicker> {
               onPressed: loadAssets,
             ),
          RaisedButton(
-              child: Text("next"),
+              child: Text("LocalDB"),
               onPressed: (){
                 navigateToPage(context, MainScreen());
               },

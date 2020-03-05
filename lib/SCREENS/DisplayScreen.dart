@@ -69,12 +69,12 @@ class _MainScreenState extends State<MainScreen> {
                             maxLines: 2,
                           ),
                           subtitle: Text(
-                            item.description,
+                            item.description??"",
                             maxLines: 3,
                           ),
                           leading: CachedNetworkImage(
                             imageUrl:
-                                "https://bostonparkingspaces.com/wp-content/themes/classiera/images/nothumb/nothumb270x180.png", // Env.img780 + item.backdropPath.toString() ?? "",
+                                "http://142.93.219.45/upload/" +item.images, // Env.img780 + item.backdropPath.toString() ?? "",
                             width: 100,
                             errorWidget: (context, url, obj) {
                               return Image.network(
@@ -123,7 +123,7 @@ class _MainScreenState extends State<MainScreen> {
       _movieDB = ProductsDB(await ProductDatabaseEngin.initDB());
     var raw = await _movieDB.getData();
     if (raw.length == 0) {
-      if (await _getMovieDB() != null||_getMovieDB() == null) {
+      if (await _getMovieDB() != null) {
         _initDB();
         return;
       } else {

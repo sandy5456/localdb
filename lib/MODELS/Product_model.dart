@@ -50,23 +50,17 @@ class Food extends Model {
     this.favid,
   });
   factory Food.fromJson(Map<String, dynamic> json) {
-    return Food(
-        id: json['productId'],
-        name: json['productName'],
-        images: json['imageurl'],
-        price: json['price'],
-        catogeryid: json['categoryId'],
-        favid: json['id']);
+    return Food(id: json['productId'], name: json['productName'], images: json['imageurl'], price: json['price'], catogeryid: json['categoryId'], favid: json['id']);
   }
 
-  factory Food.fromDB(Map<String, dynamic> json) {
+  factory Food.fromDB(Map<String, dynamic> json) { 
     return Food(
-      id: int.parse(json['productId']),
+      id: int.tryParse(json['productId']?? "0") ??0,
       name: json['productName'],
       images: json['imageurl'],
       price: json['price'],
-      catogeryid: int.parse(json['categoryId']),
-      favid: int.parse(json['id']),
+      catogeryid: int.tryParse(json['categoryId'] ?? "0") ??0,
+      favid: int.tryParse(json['id'] ?? "0") ?? 0,
     );
   }
   Map<String, dynamic> toJson() => {
@@ -77,13 +71,7 @@ class Food extends Model {
         "categoryId": catogeryid,
       };
 
-  Map<String, String> toDBMap() => {
-        "productId": id.toString(),
-        "productName": name.toString(),
-        "price": price.toString(),
-        "imageurl": images.toString(),
-        "categoryId": catogeryid.toString()
-      };
+  Map<String, String> toDBMap() => {"productId": id.toString(), "productName": name.toString(), "price": price.toString(), "imageurl": images.toString(), "categoryId": catogeryid.toString()};
 }
 
 class Shop {

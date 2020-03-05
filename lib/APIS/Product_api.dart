@@ -10,11 +10,10 @@ class PropertyProvider {
  List<FoodResponse> list;
 
   Client client = Client();
-  String propertyUrl = "http://142.93.219.45:8080/KyanCafe/kyancafe/showsMenu";
   Future<List<FoodResponse>> fetchPropertyList() async {
     // try {
     ProductsDB productsDB = ProductsDB(await ProductDatabaseEngin.initDB());
-    final response = await client.get(propertyUrl);
+    final response = await client.get("http://142.93.219.45:8080/KyanCafe/kyancafe/showsMenu");
     print(response);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
